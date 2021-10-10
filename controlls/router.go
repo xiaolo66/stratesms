@@ -6,15 +6,17 @@ func RegisterRouter(engine *gin.Engine) {
 	exchange := engine.Group("/home")
 	{
 		exchangeCtrl := NewExchange()
-		exchange.POST("/exchange", exchangeCtrl.Add())
-		exchange.POST("/exchanges",exchangeCtrl.Get())
-
-		exchange.GET("/exchanges",exchangeCtrl.GetAll())
-
-		exchange.PUT("/exchange",exchangeCtrl.Put())
-
-
+		exchange.POST("/exchange", exchangeCtrl.AddExchange())
+		exchange.POST("/exchanges",exchangeCtrl.GetExchange())
+		exchange.GET("/exchanges",exchangeCtrl.GetAllExchange())
+		exchange.PUT("/exchange",exchangeCtrl.PutExchange())
 		exchange.DELETE("/exchange",exchangeCtrl.Delete())
+	}
+	login:=engine.Group("/login")
+	{
+		userCtrl:=NewUser()
+		login.POST("/register",userCtrl.Register())
+		login.POST("/userlogin",userCtrl.UserLogin())
 	}
 
 }

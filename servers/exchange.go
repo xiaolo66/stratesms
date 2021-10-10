@@ -22,13 +22,17 @@ func (e *Exchange) Add(info *dto.Exchange) error {
 }
 
 func (e *Exchange) GetAll() (exchanges []model.Exchange, err error) {
-	err = model.DB.Find(&exchanges).Error
-	return exchanges, err
+	exchange:=model.Exchange{}
+	return exchange.GetAll()
 }
 
 func (e *Exchange) Get(info *dto.Exchange) (ex []model.Exchange, err error) {
-	err = model.DB.Debug().Where("exchange_name In(?)", &info.ExchangeName).Find(&ex).Error
-	return ex, err
+	exchange := model.Exchange{
+		ExchangeName: info.ExchangeName,
+		Website:      info.Website,
+		Describe:     info.Describe,
+	}
+	return exchange.Get()
 }
 
 func (e *Exchange) Put(info *dto.Exchange) error {

@@ -15,7 +15,7 @@ func NewExchange() *Exchange {
 	return &Exchange{}
 }
 
-func (e *Exchange) Add() gin.HandlerFunc {
+func (e *Exchange) AddExchange() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var info dto.Exchange
 		err := ctx.ShouldBind(&info)
@@ -45,7 +45,7 @@ func (e *Exchange) Add() gin.HandlerFunc {
 	}
 }
 
-func (e *Exchange) GetAll() gin.HandlerFunc {
+func (e *Exchange) GetAllExchange() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		exchanges, err := servers.ExchangeSvr.GetAll()
 		if err != nil {
@@ -64,7 +64,7 @@ func (e *Exchange) GetAll() gin.HandlerFunc {
 	}
 }
 
-func (e *Exchange) Get() gin.HandlerFunc {
+func (e *Exchange) GetExchange() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var info dto.Exchange
 		err := ctx.ShouldBind(&info)
@@ -94,7 +94,7 @@ func (e *Exchange) Get() gin.HandlerFunc {
 	}
 }
 
-func (e *Exchange) Put() gin.HandlerFunc {
+func (e *Exchange) PutExchange() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var info dto.Exchange
 		err := ctx.ShouldBind(&info)

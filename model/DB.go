@@ -21,5 +21,6 @@ func InitDB() {
 			return
 		}
 		DB.AutoMigrate(&Exchange{})
+		DB.AutoMigrate(&User{})
 	})
 }

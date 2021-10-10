@@ -17,3 +17,13 @@ func (e *Exchange) Add() error {
 	return nil
 }
 
+func(e *Exchange)GetAll()(list []Exchange,err error){
+	err = DB.Find(&list).Error
+	return list, err
+}
+
+func(e *Exchange)Get()(list []Exchange, err error){
+	err=DB.Debug().Where("exchange_name In(?)", e.ExchangeName).Find(&list).Error
+	return list, err
+}
+
